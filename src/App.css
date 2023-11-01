@@ -1,0 +1,39 @@
+.App {
+  text-align: center !important;
+  background-color: black !important;
+  font-family: sans-serif;
+}
+
+.movie-container {
+  background-color: #141414 !important;
+  height : 100vh;
+  color: white
+}
+
+.movie-container > .row {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.row>* {
+  width: auto !important;
+}
+
+.navbar-header {
+  /* background-color: #282c34;  */
+  text-align: left;
+  position: relative;
+  margin-left: 5px;
+  margin-top: 20px;
+  color: red
+}
+
+.favourites{
+  position:absolute;
+  right: 56px;
+}
+
+.userLogo{
+  position: absolute;
+  right: 5px;
+}
