@@ -15,9 +15,9 @@
   flex-wrap: nowrap;
 }
 
-.row>* {
-  width: auto !important;
-}
+/* .row>* {
+  width: 25vw;
+} */
 
 .navbar-header {
   /* background-color: #282c34;  */
@@ -31,9 +31,14 @@
 .favourites{
   position:absolute;
   right: 56px;
+  cursor: pointer;
 }
 
 .userLogo{
   position: absolute;
   right: 5px;
+}
+
+.mouse-pointer{
+  cursor: pointer;
 }

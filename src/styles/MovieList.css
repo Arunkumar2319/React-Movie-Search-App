@@ -28,16 +28,16 @@
 
 .overlay-favourite {
     position: absolute;
-    background: rgba(22, 22, 22, 0.8);
+    /* background: rgba(22, 22, 22, 0.8); */
     /* transition: 0.5s ease; */
     width: 100%;
-    opacity: 0;
+    /* opacity: 0; */
     top: 0;
-    right: 0; 
-    font-size: 20px;
-    padding: 20px;
+    left: 13px; 
+    font-size: 25px;
+    /* padding: 20px;
     text-align: center;
-    display: flex;
+    display: flex; */
 }
 
 .overlay-favourite span {
