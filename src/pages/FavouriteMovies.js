@@ -10,18 +10,16 @@ const FavoriteMovies = () => {
 
     const navigate = useNavigate(); 
     const navigateToHomePage = () => { 
-        navigate('/') 
+        navigate('/home') 
     }
 
     const favouriteMoviesList = JSON.parse(localStorage.getItem('favourite-movies'));
-    console.log("fav", favouriteMoviesList)
     const [favouriteMovieList, setFavouriteMovie] = useState(favouriteMoviesList);
 
     const removeFromFavouriteMovie = (movie) => {
         const newFavouriteList = favouriteMoviesList.filter(favourites => favourites.imdbID !== movie.imdbID)
         setFavouriteMovie(newFavouriteList)
         saveToLocalStorage(newFavouriteList)
-        console.log("after removed", newFavouriteList)
     }
 
     const saveToLocalStorage = (movieList) => {

@@ -7,8 +7,14 @@ import FavoriteMovies from "./pages/FavouriteMovies";
 import Home from './components/Home';
 import Login from "./pages/Login";
 
+// // require database connection 
+// const dbConnect = require("./db/dbConnect");
+
+// // execute database connection 
+// dbConnect();
 function App() {
 
+  
   return (
     <Routes>
       <Route path="/" element={<Login/>} />
