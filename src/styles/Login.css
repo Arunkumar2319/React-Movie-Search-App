@@ -2,43 +2,47 @@
     width: 100vw;
     height: 99vh;
     background-size: cover;
-    /* position: absolute;
-    right: 0; */
 }
 
 .card{
-    /* justify-content: center; */
-    /* margin: 0;
-    background: yellow;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    padding: 20px 24px;
-    transform: translate(-50%, -50%) */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
+    opacity: 0.97;
     width: auto;
     border-radius: 15px;
     border: 1px solid rgba(0, 0, 0, 0.18);
-    label .field-required {
-        color: var(--font-var-12);
-    }
 }
 
 .field{
-    /* background-color: black !important;
-    color: white !important; */
-    border: 1px solid var(--border-var-2);
-    background: var(--white);
+    border: 1px solid #adadad;
     display: block !important;
+    width: 25vw !important; 
+}
+
+.loginBtn{
+    width: 25vw !important;
+    margin-top: 20px; 
+}
+
+.row>* {
     width: 25vw;
 }
 
-/* .row>* {
-    width: auto;
-  }
-   */
+.header{
+    color: red;
+    align-items: center;
+}
+
+::placeholder {
+    color: #adadad !important;
+    opacity: 1; /* Firefox */
+}
+
+.text-danger{
+    color: red;
+    position: relative;
+    margin-left: 9px;
+}

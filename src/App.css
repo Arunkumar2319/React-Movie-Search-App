@@ -15,9 +15,9 @@
   flex-wrap: nowrap;
 }
 
-/* .row>* {
-  width: 25vw;
-} */
+.row>* {
+  width: auto !important;
+}
 
 .navbar-header {
   /* background-color: #282c34;  */
