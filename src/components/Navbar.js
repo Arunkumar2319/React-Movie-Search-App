@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import UserLogin from './UserLogin';
+import '../styles/NavBar.css';
 
 const NavBar = (props) => {
     const navigate = useNavigate(); 

@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 
 // // execute database connection 
 // dbConnect();
-function App() {
+const App = () => {
 
   
   return (
