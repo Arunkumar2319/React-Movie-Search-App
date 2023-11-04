@@ -1,9 +1,14 @@
+import { useDispatch } from 'react-redux';
+
 import AddToFavourite from './AddToFavourite';
 import '../styles/MovieList.css' 
-import FavoriteMovies from '../pages/FavouriteMovies';
+import { addFavouriteMovie } from '../features/favouriteMovieSlice';
 
 const MovieList = (props) => {
     const favouriteMoviesList = JSON.parse(localStorage.getItem('favourite-movies'));
+
+    const dispatch = useDispatch();
+
     let favouriteMovieIds = []
     favouriteMoviesList?.forEach(element => {
         favouriteMovieIds.push(element.imdbID)
@@ -15,7 +20,7 @@ const MovieList = (props) => {
                 <div key={index} className='image-container  d-flex movie-frame justify-content-start p-0 m-3'>                
                     <img src={movie.Poster} alt='movie'></img>                    
                     <div className='overlay d-flex align-items-center justify-content' 
-                        onClick={() => props.handleMovieToFavourite(movie)}
+                        onClick={() => dispatch(addFavouriteMovie(movie)) }
                     >
                         <AddToFavourite title={'Add to favourites'}/>
                     </div> 
