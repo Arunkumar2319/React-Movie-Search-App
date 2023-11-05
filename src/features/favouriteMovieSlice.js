@@ -20,6 +20,7 @@ const favouriteMovieSlice = createSlice({
         removeFavourite:  (state, {payload}) => {
             const newFavouriteList = state.favouriteMovies.filter(movie => movie.imdbID !== payload.imdbID)
             state.favouriteMovies = newFavouriteList
+            console.log("after removed", state.favouriteMovies)
         }
     }
 })
