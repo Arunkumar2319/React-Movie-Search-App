@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AddToFavourite from './AddToFavourite';
 import '../styles/MovieList.css' 
@@ -8,9 +8,11 @@ const MovieList = (props) => {
     const favouriteMoviesList = JSON.parse(localStorage.getItem('favourite-movies'));
 
     const dispatch = useDispatch();
+    const favouritesFromState = useSelector((store) => store.favourites?.favouriteMovies)
+
 
     let favouriteMovieIds = []
-    favouriteMoviesList?.forEach(element => {
+    favouritesFromState?.forEach(element => {
         favouriteMovieIds.push(element.imdbID)
     });
 

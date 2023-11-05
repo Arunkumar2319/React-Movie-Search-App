@@ -7,17 +7,12 @@ import FavoriteMovies from "./pages/FavouriteMovies";
 import Home from './components/Home';
 import Login from "./pages/Login";
 
-// // require database connection 
-// const dbConnect = require("./db/dbConnect");
-
-// // execute database connection 
-// dbConnect();
 const App = () => {
+  const serviceApiUrl = 'http://localhost:8080/';
 
-  
   return (
     <Routes>
-      <Route path="/" element={<Login/>} />
+      <Route path="/" element={<Login apiUrl={serviceApiUrl}/>} />
       <Route path="/home" element={<Home/>} />
       <Route path="/favourites" element={<FavoriteMovies />} />
     </Routes>
