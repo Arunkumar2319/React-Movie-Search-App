@@ -1,106 +1,96 @@
-import bannerImage from '../images/Cinema_Banner.jpeg'
-import img from '../images/BannerImg.jpg'
-import '../styles/Login.css'
-import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { setCredentials } from '../features/loginSlice';
 
-const Login = (props) => {
+import '../styles/Login.css'
+
+import img from '../images/BannerImg.jpg'
+import { setCredentials } from '../features/loginSlice';
+import { Url } from '../environment/environment';
+
+const Login = () => {
     const navigate = new useNavigate();
     const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
     const dispatch = useDispatch();
-    let errorsMsg = {};
 
-    const validateUserData = (event) => {
-        event.preventDefault();
-        setErrors(validateValues(inputFields));
-        // setValidation(true);
-        GetLoginRequest();
-    }
-
-    const GetLoginRequest = async () => {
-        console.log("req dataas", inputFields)
-        const url = 'http://localhost:8080/api/login'+ inputFields;
-        console.log("url created", url)
-
-        try{
-            const response = await fetch('http://localhost:8080/api/login', {
-                "method": "POST",
-                "body": JSON.stringify({
-                    email: inputFields.email,
-                    password: inputFields.password
-                })
-            })
-            const responseJSON = await response.json();
-            if (responseJSON?.error) {
-                console.log("login creds", responseJSON)   
-                errorsMsg.serverErrorMsg = responseJSON.message             
-            }
-        }
-        catch(error){
-            console.log(error)
-        }
-
-
-        // const response = await fetch('http://localhost:8080/api/login', {
-        //     "method": "POST",
-        //     "body": JSON.stringify({
-        //         email: inputFields.email,
-        //         password: inputFields.password
-        //     })
-        // }).then(response => response.json()).then(response => 
-        //         console.log("response got finally", response)
-        //     )
-        // console.log("response", response)
-        // const responseJSON = await response.json();
-
-        // if (responseJSON) {
-        //     console.log("login creds", responseJSON)
-        // }
-    }
-    
     const [inputFields, setInputFields] = useState({
         email: '',
         password: '',
     });
-    
     const [errors, setErrors] = useState({});
     const [isValidated, setValidation] = useState(false);
 
-    const onSubmit = () => {
-        console.log("final", inputFields);
-        navigate('/home');
-        console.log("url", props.apiUrl)
-        dispatch(setCredentials(inputFields));
+    // Function to handle input change event
+    const handleInputChange = (e) => {
+        setInputFields({ ...inputFields, [e.target.name]: e.target.value })
     };
+
+    const validateUserData = (event) => {
+        event.preventDefault();
+        const error = validateValues(inputFields);
+        if (Object.keys(error).length !== 0) {
+            setErrors(error)
+        }
+        else {
+            GetLoginRequest();
+        }
+    }
+
+    // Field level validations 
+    const validateValues = (inputValues) => {
+        let errors = {}
+        if (inputValues.email === '') {
+            errors.email = 'Email is required';
+        }
+        if (inputValues.email && !emailRegex.test(inputValues.email)) {
+            errors.email = 'Please enter a valid email';
+        }
+        if (inputValues.password === '') {
+            errors.password = 'Password is required';
+        }
+        if (inputValues.password && inputValues.password.length < 8) {
+            errors.password = 'Minimum 8 characters are required';
+        }
+        return errors;
+    };
+
+    // Async function which creates request
+    const GetLoginRequest = async () => {
+
+        const response = await fetch(Url, {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            "body": JSON.stringify({
+                email: inputFields.email,
+                password: inputFields.password
+            })
+        })
+        const responseJSON = await response.json();
+        if (responseJSON?.error) {
+            let errorMsg = {
+                serverErrorMsg: responseJSON.message
+            }
+            setErrors(errorMsg)
+        }
+        else {
+            setErrors({})
+            setValidation(true);
+            dispatch(setCredentials(responseJSON));
+        }
+    }
+
     useEffect(() => {
         if (Object.keys(errors).length === 0 && isValidated) {
             onSubmit();
         }
     }, [errors]);
 
-    const validateValues = (inputValues) => {
-        console.log("enterd value", inputValues)
-        if (inputValues.email == '') {
-            errorsMsg.email = 'Email is required';
-        }
-        if (inputValues.email && !emailRegex.test(inputValues.email)) {
-            errorsMsg.email = 'Please enter a valid email';
-        }
-        if (inputValues.password == '') {
-            errorsMsg.password = 'Password is required';
-        }
-        if (inputValues.password && inputValues.password.length < 8) {
-            errorsMsg.password = 'Minimum 8 characters are required';
-        }
-        console.log("err", errorsMsg)
-        return errorsMsg;
-    };
 
-    const handleInputChange = (e) => {
-        console.log("form value", e)
-        setInputFields({ ...inputFields, [e.target.name]: e.target.value })
+    const onSubmit = () => {
+        navigate('/home');
     };
 
     return (
@@ -126,9 +116,9 @@ const Login = (props) => {
                                 >
                                 </input>
                             </div>
-                            {errorsMsg.email ? (
+                            {errors.email ? (
                                 <div className='row'>
-                                    <span className='text-danger'>{errorsMsg.email}</span>
+                                    <span className='text-danger'>{errors.email}</span>
                                 </div>
                             ) : null}
                             <div className='row'>
@@ -137,17 +127,17 @@ const Login = (props) => {
                             <div className='row m-2'>
                                 <input type='password' name='password' className='form-control field' placeholder='Enter Password' onChange={(event) => handleInputChange(event)}></input>
                             </div>
-                            {errorsMsg.password ? (
+                            {errors.password ? (
                                 <div className='row'>
-                                    <span className='text-danger'>{errorsMsg.password}</span>
+                                    <span className='text-danger'>{errors.password}</span>
                                 </div>
                             ) : null}
                             <div className='row m-2'>
                                 <button className='btn btn-primary loginBtn'>Login</button>
                             </div>
-                            {errorsMsg.serverErrorMsg ? (
+                            {errors.serverErrorMsg ? (
                                 <div className='row'>
-                                    <span className='text-danger'>{errorsMsg.serverErrorMsg}</span>
+                                    <span className='text-danger'>{errors.serverErrorMsg}</span>
                                 </div>
                             ) : null}
                         </form>
