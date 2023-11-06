@@ -82,6 +82,7 @@ const Login = () => {
         }
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (Object.keys(errors).length === 0 && isValidated) {
             onSubmit();
