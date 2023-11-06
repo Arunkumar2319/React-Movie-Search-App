@@ -27,6 +27,10 @@
     margin-top: 20px; 
 }
 
+.cancelBtn{
+    width: 25vw !important;
+}
+
 .row>* {
     width: 25vw;
 }
