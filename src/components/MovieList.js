@@ -7,8 +7,7 @@ import { addFavouriteMovie } from '../features/favouriteMovieSlice';
 const MovieList = (props) => {
     const dispatch = useDispatch();
     const favouritesFromState = useSelector((store) => store.favourites?.favouriteMovies)
-
-
+    
     let favouriteMovieIds = []
     favouritesFromState?.forEach(element => {
         favouriteMovieIds.push(element.imdbID)

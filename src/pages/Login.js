@@ -57,7 +57,7 @@ const Login = () => {
     // Async function which creates request
     const GetLoginRequest = async () => {
 
-        const response = await fetch(Url, {
+        const response = await fetch(Url + 'api/login', {
             "method": "POST",
             "headers": {
                 "content-type": "application/json",
@@ -82,7 +82,6 @@ const Login = () => {
         }
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (Object.keys(errors).length === 0 && isValidated) {
             onSubmit();
@@ -93,6 +92,10 @@ const Login = () => {
     const onSubmit = () => {
         navigate('/home');
     };
+
+    const navigateToHomePage = () => {
+        navigate('/')
+    }
 
     return (
         <>
@@ -134,7 +137,10 @@ const Login = () => {
                                 </div>
                             ) : null}
                             <div className='row m-2'>
-                                <button className='btn btn-primary loginBtn'>Login</button>
+                                <button type='submit' className='btn btn-primary loginBtn'>Login</button>
+                            </div>
+                            <div className='row m-2'>
+                                <button type='button' className='btn btn-danger cancelBtn' onClick={navigateToHomePage}>Cancel</button>
                             </div>
                             {errors.serverErrorMsg ? (
                                 <div className='row'>

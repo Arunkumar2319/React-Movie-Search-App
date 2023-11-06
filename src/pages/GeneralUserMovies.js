@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import '../styles/MovieList.css'
-import MovieList from './MovieList';
-import NavBar from './Navbar';
+import MovieList from '../components/MovieList';
+import NavBar from '../components/Navbar';
 import AppLoader from '../AppLoader';
 
-const Home = () => {
+const GeneralUserMovies = () => {
     let closeProfileSettings = false
     const [movies, setMovies] = useState([]);
     const [searchValue, setSearchValue] = useState('avengers');
@@ -47,12 +47,15 @@ const Home = () => {
             <div className='row'>
                 <h3>Trending</h3>
             </div>
-            <div className="row" onClick={handleProfileSettings}>   
-                <MovieList
-                    movies={movies}/>
+            <div className="row" >   
+                { movies?.map((movie, index) => 
+                    <div key={index} className='image-container  d-flex movie-frame justify-content-start p-0 m-3'>                
+                        <img src={movie.Poster} alt='movie'></img>                    
+                    </div> 
+                )}        
             </div>
         </div>
     )
 }
 
-export default Home;
+export default GeneralUserMovies;
