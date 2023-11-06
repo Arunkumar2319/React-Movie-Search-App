@@ -5,8 +5,6 @@ import '../styles/MovieList.css'
 import { addFavouriteMovie } from '../features/favouriteMovieSlice';
 
 const MovieList = (props) => {
-    const favouriteMoviesList = JSON.parse(localStorage.getItem('favourite-movies'));
-
     const dispatch = useDispatch();
     const favouritesFromState = useSelector((store) => store.favourites?.favouriteMovies)
 
