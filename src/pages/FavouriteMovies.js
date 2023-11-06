@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
-import AddToFavourite from "../components/AddToFavourite";
 import '../styles/MovieList.css';
-import '../styles/MovieList.css'
+import '../styles/MovieList.css';
+
+import AddToFavourite from "../components/AddToFavourite";
 import { removeFavourite } from '../features/favouriteMovieSlice';
 
 
