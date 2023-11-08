@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import '../styles/MovieList.css'
+
 import MovieList from './MovieList';
 import NavBar from './Navbar';
 import AppLoader from '../AppLoader';
@@ -9,12 +10,11 @@ const Home = () => {
     let closeProfileSettings = false
     const [movies, setMovies] = useState([]);
     const [searchValue, setSearchValue] = useState('avengers');
-    const [isLoading, setLoading] = useState(false); 
+    const [isLoading, setLoading] = useState(false);
 
     const GetMovieRequest = async () => {
         setLoading(true);
         const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=e1cedc90`
-        // const url = 'http://www.omdbapi.com/?t=Game of Thrones&Season=1&apikey=e1cedc90'
         const response = await fetch(url)
         const responseJSON = await response.json();
 
@@ -27,7 +27,7 @@ const Home = () => {
     const handleProfileSettings = () => {
         closeProfileSettings = true
     }
-     
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         GetMovieRequest(searchValue)
@@ -36,20 +36,20 @@ const Home = () => {
     return (
         <div className="container-fluid movie-container">
             {movies.length === 0 && isLoading ? (
-                <AppLoader/>
-            ): null}
+                <AppLoader />
+            ) : null}
             <div className='row App'>
-            <NavBar 
-                SearchValue={searchValue}
-                setSearchValue={setSearchValue}
-                closeProfileSettings={closeProfileSettings}/>
+                <NavBar
+                    SearchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                    closeProfileSettings={closeProfileSettings} />
             </div>
             <div className='row'>
                 <h3>Trending</h3>
             </div>
-            <div className="row" onClick={handleProfileSettings}>   
+            <div className="row" onClick={handleProfileSettings}>
                 <MovieList
-                    movies={movies}/>
+                    movies={movies} />
             </div>
         </div>
     )
