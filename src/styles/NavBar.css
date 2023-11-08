@@ -12,17 +12,16 @@
 .profile{
     position: absolute;
     top: 10%;
-    right: -4%;
+    right: -2%;
     transform: translate(-50%, -50%);
     background-color: white;
     color: #141414;    
-    width: 10vw !important;
+    width: auto;
     font-size: 1em;
-    transition: width 5s;
     border-radius: 15px;
     border: 1px solid rgba(0, 0, 0, 0.18);
-    z-index: 9999;
     padding: 0;
+    z-index: 00;
 }
 
 ul {
@@ -40,3 +39,50 @@ ul {
     background-color: grey;
     
  }
+
+ .userLogo{
+    position: absolute;
+    display: flex;
+    /* right: 5px; */
+    justify-content: flex-end;
+  }
+
+  
+
+.navbar-header {
+    /* background-color: #282c34;  */
+    text-align: left;
+    position: relative;
+    margin-left: 5px;
+    margin-top: 20px;
+    color: red
+  }
+
+  
+.favourites{
+    position:absolute;
+    display: flex;
+    right: 56px;
+    justify-content: flex-end;
+    cursor: pointer;
+    z-index: 40;
+  }
+
+  
+@media only screen and (max-width: 600px) {
+    .search-navbar{
+        width: 90vw;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .search-navbar{
+        width: 50vw;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .search-navbar{
+        width: 40vw;
+    }
+}

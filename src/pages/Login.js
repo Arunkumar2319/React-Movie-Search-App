@@ -56,8 +56,7 @@ const Login = () => {
 
     // Async function which creates request
     const GetLoginRequest = async () => {
-
-        const response = await fetch(Url + 'api/login', {
+        const response = await fetch(Url + 'login', {
             "method": "POST",
             "headers": {
                 "content-type": "application/json",
@@ -102,7 +101,7 @@ const Login = () => {
             <div>
                 <img className='bannerImg' src={img} alt='movie'></img>
                 <div className='card'>
-                    <div className='container m-4'>
+                    <div className='container'>
                         <form onSubmit={validateUserData}>
                             <div className='header'>
                                 <h3 ><b>Movie App</b></h3>
@@ -136,17 +135,17 @@ const Login = () => {
                                     <span className='text-danger'>{errors.password}</span>
                                 </div>
                             ) : null}
+                            {errors.serverErrorMsg ? (
+                                <div className='row'>
+                                    <span className='text-danger'>{errors.serverErrorMsg}</span>
+                                </div>
+                            ) : null}
                             <div className='row m-2'>
                                 <button type='submit' className='btn btn-primary loginBtn'>Login</button>
                             </div>
                             <div className='row m-2'>
                                 <button type='button' className='btn btn-danger cancelBtn' onClick={navigateToHomePage}>Cancel</button>
                             </div>
-                            {errors.serverErrorMsg ? (
-                                <div className='row'>
-                                    <span className='text-danger'>{errors.serverErrorMsg}</span>
-                                </div>
-                            ) : null}
                         </form>
                     </div>
                 </div>

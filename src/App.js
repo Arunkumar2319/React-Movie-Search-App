@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 import FavoriteMovies from "./pages/FavouriteMovies";
@@ -13,9 +13,9 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path="/login" element={<Login apiUrl={serviceApiUrl}/>} />
-      <Route path="/home" element={<Home/>} />
-      <Route path="/" element={<GeneralUserMovies/>} />
+      <Route path="/" element={<GeneralUserMovies />} />
+      <Route path="/login" element={<Login apiUrl={serviceApiUrl} />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/favourites" element={<FavoriteMovies />} />
     </Routes>
   );

@@ -1,7 +1,8 @@
 .bannerImg{
     width: 100vw;
     height: 99vh;
-    background-size: cover;
+    background-size: contain;
+    object-fit: cover;
 }
 
 .card{
@@ -11,28 +12,25 @@
     transform: translate(-50%, -50%);
     background-color: white;
     opacity: 0.97;
-    width: auto;
+    width: 30%;
     border-radius: 15px;
     border: 1px solid rgba(0, 0, 0, 0.18);
+    padding: 20px;
+    justify-content: center;
 }
 
 .field{
     border: 1px solid #adadad;
     display: block !important;
-    width: 25vw !important; 
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
-.loginBtn{
-    width: 25vw !important;
-    margin-top: 20px; 
-}
-
-.cancelBtn{
-    width: 25vw !important;
-}
-
-.row>* {
-    width: 25vw;
+.loginBtn,
+.cancelBtn {
+  width: 100%;
+  padding: 10px;
 }
 
 .header{
@@ -49,4 +47,22 @@
     color: red;
     position: relative;
     margin-left: 9px;
+}
+
+@media only screen and (max-width: 600px) {
+    .card{
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .card{
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .card{
+        width: 35%;
+    }
 }
