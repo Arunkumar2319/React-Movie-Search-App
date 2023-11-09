@@ -20,12 +20,12 @@ const FavoriteMovies = () => {
     return (
         <>
             <div className="container-fluid movie-container">
-                <div className='row d-flex App'>
-                    <div className="mt-4 mouse-pointer" onClick={navigateToHomePage}>
+                <div className='row App'>
+                    <div className="mt-2 mouse-pointer" onClick={navigateToHomePage}>
                         <h5><b>Home</b></h5>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mt-2">
                     <h3><b>Favourites</b></h3>
                 </div>
                 <div className='row'>

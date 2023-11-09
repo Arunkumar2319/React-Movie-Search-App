@@ -1,18 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setTheme } from '../features/themeSwitchSlice';
+import darkTheme from '../images/dark-theme.svg';
+import lightTheme from '../images/light-theme.svg'
+import userLogo from '../images/userLogo.svg'
+
 
 import '../styles/NavBar.css';
-
-import UserLogin from './UserLogin';
 import Profile from "./Profile";
 
 const NavBar = (props) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const navigateToFavouritesPage = (event) => {
         event.stopPropagation();
         navigate('/favourites');
     }
+
     const [credentialDetails] = useState(useSelector((Store) => Store.credentials.credentialDetails));
     const [openProfileSettings, setProfileSettings] = useState(false)
 
@@ -24,23 +31,49 @@ const NavBar = (props) => {
         setProfileSettings(false)
     }
 
-    useEffect(() => {
-    }, [props.closeProfileSettings])
+    const [themeFlag, setThemeFlag] = useState(false);
+    const [stylesForTheme, setStylesForTheme] = useState({
+        backgroundColor: "black",
+        color: "white",
+    });
+
+    const changeTheme = () => {
+        setThemeFlag(!themeFlag);
+
+        if (themeFlag) {
+            setStylesForTheme({
+                backgroundColor: "black",
+                color: "white",
+            });
+            dispatch(setTheme('dark'));
+
+        } else {
+            setStylesForTheme({
+                backgroundColor: "white",
+                color: "black",
+            });
+            dispatch(setTheme('light'))
+        }
+    }
 
     return (
-        <div className='row d-flex App' >
+        <div className='row d-flex App' style={stylesForTheme}>
             <div className="mt-3 mb-2 navbar-header">
                 <h3><b>Movie App</b></h3>
             </div>
             <div className="row mb-2">
-                <div className='search-navbar mb-2'>
+                <div className='search-navbar mb-2' style={stylesForTheme}>
                     <input
-                        className='search-navbar form-control'
+                        className='form-control'
                         placeholder='Search...'
                         onChange={(event) => props.setSearchValue(event.target.value)}
                     >
                     </input>
                 </div>
+            </div>
+            <div onClick={changeTheme}>
+                {/* <img className="icon-size" src={darkTheme} alt='dark theme'/> */}
+                <img className="icon-size" src={lightTheme} alt='light theme'/>
             </div>
             {credentialDetails != null ? (
                 <div className='favourites mt-3' title='Favourites' onClick={(event) => navigateToFavouritesPage(event)}>
@@ -49,11 +82,11 @@ const NavBar = (props) => {
                     </svg>
                 </div>
             ) : null}
-            <div className='userLogo mt-3 ' onClick={openUserProfileSettings}>
-                <UserLogin />
+            <div className='userLogo mt-3'  onClick={openUserProfileSettings}>
+                <img className='userIcon' src={userLogo} alt="user-logo" style={{backgroundColor: "black"}}/>
             </div>
             {openProfileSettings ? (
-                <div className='profile ' onClick={closeUserProfileSettings}>
+                <div className='profile' onClick={closeUserProfileSettings}>
                     <Profile />
                 </div>
             ) : null}

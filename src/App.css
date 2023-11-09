@@ -1,11 +1,11 @@
 .App {
   text-align: center !important;
-  background-color: black !important;
+  background-color: black ;
   font-family: sans-serif;
 }
 
 .movie-container {
-  background-color: #141414 !important;
+  background-color: #141414 ;
   height : 100vh;
   color: white
 }
@@ -21,4 +21,11 @@
 
 .container{
   display: block;
+}
+
+.homeBtn{
+  position: absolute;
+  display: flex;
+  /* right: 5px; */
+  justify-content: flex-start;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,11 @@ const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [credentialDetails] = useState(useSelector((Store) => Store.credentials.credentialDetails));
+    const [theme, setTheme] = useState(useSelector((Store) => Store.theme.setTheme));
+    const [stylesForTheme, setStylesForTheme] = useState({
+        backgroundColor: "#141414",
+        color: "white",
+    });
     const onClickLogout = () => {
         navigate('/');
         dispatch(setCredentials(null))
@@ -16,6 +21,15 @@ const Profile = () => {
     const onClickLogin = () => {
         navigate('/login');
     }
+
+    useEffect(() => {
+        if(theme == 'light'){
+            setStylesForTheme({backgroundColor: "black", color: "white"})
+        }
+        else{
+            setStylesForTheme({backgroundColor: "white", color: "black"})
+        }
+    }, [theme])
 
     return (
         <>
