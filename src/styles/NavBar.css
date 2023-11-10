@@ -1,12 +1,12 @@
 .search-navbar{
-    background-color: black !important;
-    color: white !important;
+    background-color: black ;
+    color: white ;
     width: 30vw;
 }
 
 ::placeholder {
     color: white !important;
-    opacity: 1; /* Firefox */
+    opacity: 1; 
 }
 
 .profile{
@@ -66,8 +66,8 @@ ul {
     justify-content: flex-end;
     cursor: pointer;
     z-index: 40;
+    font-size: 22px;
   }
-
   
 @media only screen and (max-width: 600px) {
     .search-navbar{
@@ -85,4 +85,23 @@ ul {
     .search-navbar{
         width: 40vw;
     }
+}
+
+.userIcon{
+    width: 23px;
+}
+
+.favourite-icon{
+    position: absolute;
+    width: 25px;
+    top: 16px;
+    right: 85px;
+}
+
+.theme-icon-style{
+    position: absolute;
+    top: 19px;
+    width: 21px;
+    right: 8%;
+    z-index: 45;
 }
