@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import '../styles/MovieList.css'
 import NavBar from '../components/Navbar';
@@ -11,7 +11,7 @@ const GeneralUserMovies = () => {
     const [searchValue, setSearchValue] = useState('avengers');
     const [isLoading, setLoading] = useState(false);
 
-    const GetMovieRequest = async () => {
+    const GetMovieRequest = useCallback( async () => {
         setLoading(true);
         const url = movieApiUrl + `${searchValue}` + apikey
         const response = await fetch(url)
@@ -21,7 +21,7 @@ const GeneralUserMovies = () => {
             setLoading(false);
             setMovies(responseJSON.Search);
         }
-    }
+    }, [searchValue])
 
     const handleProfileSettings = () => {
         closeProfileSettings = true
@@ -30,7 +30,7 @@ const GeneralUserMovies = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         GetMovieRequest(searchValue)
-    }, [searchValue])
+    }, [searchValue, GetMovieRequest])
 
     return (
         <div className="container-fluid movie-container">
