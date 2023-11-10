@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import '../styles/MovieList.css'
 
@@ -11,10 +12,33 @@ const Home = () => {
     const [movies, setMovies] = useState([]);
     const [searchValue, setSearchValue] = useState('avengers');
     const [isLoading, setLoading] = useState(false);
+    // const [stylesForTheme, setStylesForTheme] = useState({
+    //     backgroundColor: "#141414",
+    //     color: "white",
+    // });
 
-    const GetMovieRequest = async () => {
+    const containerElement = useRef(); 
+
+    const favouritesFromState = useSelector((store) => store.favourites?.favouriteMovies);
+    const theme = useSelector((store) => store.theme?.themeStyle);
+    console.log("theme", theme)
+
+    useEffect(() => {
+        console.log("check")
+    }, [favouritesFromState])
+
+    useEffect(() => {
+        if(theme === "dark"){
+            containerElement.current.style.backgroundColor = "#141414 "
+        }
+        else{
+            containerElement.current.style.backgroundColor = "white"
+        }
+    }, [theme])
+
+    const GetMovieRequest = useCallback( async () => {
         setLoading(true);
-        const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=e1cedc90`
+        const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=e1cedc90`  
         const response = await fetch(url)
         const responseJSON = await response.json();
 
@@ -22,7 +46,7 @@ const Home = () => {
             setLoading(false);
             setMovies(responseJSON.Search);
         }
-    }
+    }, [searchValue])
 
     const handleProfileSettings = () => {
         closeProfileSettings = true
@@ -31,14 +55,18 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         GetMovieRequest(searchValue)
-    }, [searchValue])
+    }, [searchValue, GetMovieRequest])
+
+    // const changeStyleBasedOnTheme = () => {
+    //     containerElement.current.style.backgroundColor = "white"
+    // }
 
     return (
-        <div className="container-fluid movie-container">
-            {movies.length === 0 && isLoading ? (
+        <div className="container-fluid movie-container" ref={containerElement}>
+            {movies.length === 0 && isLoading ? ( 
                 <AppLoader />
-            ) : null}
-            <div className='row App'>
+                ) : null}
+            <div className='row App' >
                 <NavBar
                     SearchValue={searchValue}
                     setSearchValue={setSearchValue}
@@ -47,7 +75,7 @@ const Home = () => {
             <div className='row'>
                 <h3>Trending</h3>
             </div>
-            <div className="row" onClick={handleProfileSettings}>
+            <div className="row" onClick={handleProfileSettings} >
                 <MovieList
                     movies={movies} />
             </div>
