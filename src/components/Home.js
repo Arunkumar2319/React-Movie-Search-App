@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import '../styles/MovieList.css'
@@ -12,10 +12,10 @@ const Home = () => {
     const [movies, setMovies] = useState([]);
     const [searchValue, setSearchValue] = useState('avengers');
     const [isLoading, setLoading] = useState(false);
-    const [stylesForTheme, setStylesForTheme] = useState({
-        backgroundColor: "#141414",
-        color: "white",
-    });
+    // const [stylesForTheme, setStylesForTheme] = useState({
+    //     backgroundColor: "#141414",
+    //     color: "white",
+    // });
 
     const containerElement = useRef(); 
 
@@ -28,7 +28,7 @@ const Home = () => {
     }, [favouritesFromState])
 
     useEffect(() => {
-        if(theme == "dark"){
+        if(theme === "dark"){
             containerElement.current.style.backgroundColor = "#141414 "
         }
         else{
@@ -36,7 +36,7 @@ const Home = () => {
         }
     }, [theme])
 
-    const GetMovieRequest = async () => {
+    const GetMovieRequest = useCallback( async () => {
         setLoading(true);
         const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=e1cedc90`  
         const response = await fetch(url)
@@ -46,7 +46,7 @@ const Home = () => {
             setLoading(false);
             setMovies(responseJSON.Search);
         }
-    }
+    }, [searchValue])
 
     const handleProfileSettings = () => {
         closeProfileSettings = true
@@ -55,11 +55,11 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         GetMovieRequest(searchValue)
-    }, [searchValue])
+    }, [searchValue, GetMovieRequest])
 
-    const changeStyleBasedOnTheme = () => {
-        containerElement.current.style.backgroundColor = "white"
-    }
+    // const changeStyleBasedOnTheme = () => {
+    //     containerElement.current.style.backgroundColor = "white"
+    // }
 
     return (
         <div className="container-fluid movie-container" ref={containerElement}>

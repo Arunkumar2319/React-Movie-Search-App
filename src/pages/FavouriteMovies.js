@@ -20,9 +20,9 @@ const FavoriteMovies = () => {
     return (
         <>
             <div className="container-fluid movie-container">
-                <div className='row App'>
-                    <div className="mt-2 mouse-pointer" onClick={navigateToHomePage}>
-                        <h5><b>Home</b></h5>
+                <div className='row App '>
+                    <div className="mt-2 mb-3 mouse-pointer" onClick={navigateToHomePage}>
+                        <h5 className="header"><b>Home</b></h5>
                     </div>
                 </div>
                 <div className="row mt-2">

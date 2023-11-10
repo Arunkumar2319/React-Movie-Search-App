@@ -29,3 +29,9 @@
   /* right: 5px; */
   justify-content: flex-start;
 }
+
+.header{
+  position: relative;
+  left : 2px;
+  top: 5px;
+}

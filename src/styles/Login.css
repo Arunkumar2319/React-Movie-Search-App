@@ -33,9 +33,17 @@
   padding: 10px;
 }
 
+.main-header{
+    color: red;
+    align-items: center;
+}
+
 .header{
     color: red;
     align-items: center;
+    position: absolute;
+    top: 7px;
+    left: 14px;
 }
 
 ::placeholder {
@@ -65,4 +73,8 @@
     .card{
         width: 35%;
     }
+}
+
+.container{
+    padding: 0px;
 }

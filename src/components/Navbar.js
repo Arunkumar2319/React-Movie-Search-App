@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setTheme } from '../features/themeSwitchSlice';
-import darkTheme from '../images/dark-theme.svg';
+// import darkTheme from '../images/dark-theme.svg';
 import lightTheme from '../images/light-theme.svg'
-import userLogo from '../images/userLogo.svg'
+import userLogo from '../images/userLogo.svg';
+// import favourites from '../images/favourites.svg'
 
 
 import '../styles/NavBar.css';
@@ -71,10 +72,11 @@ const NavBar = (props) => {
                     </input>
                 </div>
             </div>
-            <div onClick={changeTheme}>
-                {/* <img className="icon-size" src={darkTheme} alt='dark theme'/> */}
-                <img className="icon-size" src={lightTheme} alt='light theme'/>
-            </div>
+            {credentialDetails != null ? (
+                <div onClick={changeTheme} title="change theme">
+                    <img className="theme-icon-style" src={lightTheme} alt='light theme' />
+                </div>
+            ) : null}
             {credentialDetails != null ? (
                 <div className='favourites mt-3' title='Favourites' onClick={(event) => navigateToFavouritesPage(event)}>
                     <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512" fill='red'>
@@ -83,7 +85,7 @@ const NavBar = (props) => {
                 </div>
             ) : null}
             <div className='userLogo mt-3'  onClick={openUserProfileSettings}>
-                <img className='userIcon' src={userLogo} alt="user-logo" style={{backgroundColor: "black"}}/>
+                <img className='userIcon' src={userLogo} alt="user-logo" style={{color: "black"}}/>
             </div>
             {openProfileSettings ? (
                 <div className='profile' onClick={closeUserProfileSettings}>

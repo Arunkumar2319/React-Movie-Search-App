@@ -37,7 +37,7 @@ const GeneralUserMovies = () => {
             {movies.length === 0 && isLoading ? (
                 <AppLoader />
             ) : null}
-            <div className='row App'>
+            <div className='row App' onClick={handleProfileSettings}>
                 <NavBar
                     SearchValue={searchValue}
                     setSearchValue={setSearchValue}

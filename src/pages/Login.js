@@ -85,7 +85,7 @@ const Login = () => {
         if (Object.keys(errors).length === 0 && isValidated) {
             onSubmit();
         }
-    }, [errors]);
+    }, [errors, isValidated]);
 
 
     const onSubmit = () => {
@@ -103,7 +103,8 @@ const Login = () => {
                 <div className='card'>
                     <div className='container'>
                         <form onSubmit={validateUserData}>
-                            <div className='header'>
+                            <div className='main-header
+                            '>
                                 <h3 ><b>Movie App</b></h3>
                             </div>
                             <div className='row'>
