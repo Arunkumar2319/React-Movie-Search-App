@@ -1,0 +1,57 @@
+.image-container{
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.image-container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+
+.overlay {
+    position: absolute;
+    background: rgba(22, 22, 22, 0.8);
+    transition: 0.5s ease;
+    width: 100%;
+    opacity: 0;
+    bottom: 0;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+}
+
+.overlay-favourite {
+    position: absolute;
+    /* background: rgba(22, 22, 22, 0.8); */
+    /* transition: 0.5s ease; */
+    width: 100%;
+    /* opacity: 0; */
+    top: 0;
+    left: 13px; 
+    font-size: 25px;
+    /* padding: 20px;
+    text-align: center;
+    display: flex; */
+}
+
+.overlay-favourite span {
+    margin: 0 auto;
+}
+
+.overlay span {
+    margin: 0 auto;
+}
+
+.movie-frame {
+    width: fit-content;
+}
+
+.row::-webkit-scrollbar {
+    display: none;
+}

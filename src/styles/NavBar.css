@@ -1,0 +1,109 @@
+.search-navbar{
+    background-color: black ;
+    color: white ;
+    width: 30vw;
+}
+
+::placeholder {
+    color: white !important;
+    opacity: 1; 
+}
+
+.profile{
+    position: absolute;
+    top: 10%;
+    right: -2%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: #141414;    
+    width: auto;
+    font-size: 1em;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    padding: 0;
+    z-index: 00;
+}
+
+ul {
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    color: #141414;
+    background-color: white;
+    border-radius: 15px;
+    padding: 0;
+}
+ li:hover{
+    color: white;
+    background-color: grey;
+    
+ }
+
+ .userLogo{
+    position: absolute;
+    display: flex;
+    /* right: 5px; */
+    justify-content: flex-end;
+    right: 4px;
+  }
+
+  
+
+.navbar-header {
+    /* background-color: #282c34;  */
+    text-align: left;
+    position: relative;
+    margin-left: 5px;
+    margin-top: 20px;
+    color: red
+  }
+
+  
+.favourites{
+    position:absolute;
+    display: flex;
+    right: 70px;
+    justify-content: flex-end;
+    cursor: pointer;
+    z-index: 40;
+    font-size: 18px;
+  }
+  
+@media only screen and (max-width: 600px) {
+    .search-navbar{
+        width: 90vw;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .search-navbar{
+        width: 50vw;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .search-navbar{
+        width: 40vw;
+    }
+}
+
+.userIcon{
+    width: 23px;
+    color: black;
+}
+
+.favourite-icon{
+    position: absolute;
+    width: 21px;
+    top: 16px;
+    right: 85px;
+}
+
+.theme-icon-style{
+    position: absolute;
+    top: 19px;
+    width: 18px;
+    right: 51px;
+    z-index: 45;
+}
