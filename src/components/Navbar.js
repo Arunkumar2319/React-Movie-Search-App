@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setTheme } from '../features/themeSwitchSlice';
-// import darkTheme from '../images/dark-theme.svg';
+import darkTheme from '../images/dark-theme.svg';
 import lightTheme from '../images/light-theme.svg'
 import userLogo from '../images/userLogo.svg';
+import userLogoDark from '../images/userLogoDark.svg'
 import favourites from '../images/favourites.svg'
 // import menuIcon from '../images/hamburger_menu.svg'
 
@@ -19,6 +20,16 @@ const NavBar = (props) => {
     const navigateToFavouritesPage = (event) => {
         event.stopPropagation();
         navigate('/favourites');
+    }
+
+    const navigateToLoginPage = (event) => {
+        event.stopPropagation();
+        navigate('/login');
+    }
+
+    const navigateToGeneralHomePage = (event) => {
+        event.stopPropagation();
+        navigate('/');
     }
 
     const [credentialDetails] = useState(useSelector((Store) => Store.credentials.credentialDetails));
@@ -85,7 +96,9 @@ const NavBar = (props) => {
                 <>
                     {credentialDetails != null ? (
                         <div onClick={changeTheme} title="change theme">
-                            <img className="theme-icon-style" src={lightTheme} alt='light theme' />
+                            {themeFlag === false ? (<img className="theme-icon-style" src={lightTheme} alt='light theme' />): (
+                                <img className="theme-icon-style" src={darkTheme} alt='light theme' /> 
+                            )}
                         </div>
                     ) : null}
                     {credentialDetails != null ? (
@@ -96,7 +109,9 @@ const NavBar = (props) => {
                         </div>
                     ) : null}
                     <div className='userLogo mt-3' onClick={openUserProfileSettings}>
-                        <img className='userIcon' src={userLogo} alt="user-logo" style={{ color: "black" }} />
+                        {themeFlag === false ? (<img className="userIcon" src={userLogo} alt='user logo' />): (
+                                <img className="userIcon" src={userLogoDark} alt='user logo dark' /> 
+                            )}
                     </div>
                     {openProfileSettings ? (
                         <div className='profile' onClick={closeUserProfileSettings}>
@@ -113,13 +128,14 @@ const NavBar = (props) => {
                         <a href="javascript:void(0)" class="closebtn" onClick={closeNav}>×</a>
                         {credentialDetails != null ? (
                             <>
-                                <a href="/favourites" className="mt-2"><img className="m-1" src={favourites} alt="favourite" style={{width: "6vw"}}/>Favourites</a>
-                                <a href="/"><img className="m-1" src={userLogo} alt="login" style={{width: "6vw"}}/>Logout</a>                        
+                                <a onClick={navigateToFavouritesPage} className="mt-2 iconSize"><img className="m-1" src={favourites} alt="favourite" style={{width: "5.5vw", zindex: "22"}}/>Favourites</a>
+                                <a onClick={navigateToGeneralHomePage} className="iconSize"><img className="m-1" src={userLogo} alt="login" style={{width: "5.5vw"}}/>Logout</a>  
+                                <a onClick={changeTheme} className="iconSize"><img className="m-1" src={lightTheme} alt="login" style={{width: "5.5vw"}}/>Theme</a>                                              
                             </>
                         ): (
                             <>
                                 {/* <a href="javascript:void(0)">Profile</a>                         */}
-                                <a href="/login"><img className="m-1" src={userLogo} alt="login" style={{width: "6vw"}}/>Login</a>                        
+                                <a onClick={navigateToLoginPage} className="iconSize"><img className="m-1" src={userLogo} alt="login" style={{width: "5.5vw"}}/>Login</a>                        
                             </>
                         )}
                     </div>

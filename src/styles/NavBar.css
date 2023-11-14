@@ -65,7 +65,7 @@ ul {
     right: 56px;
     justify-content: flex-end;
     cursor: pointer;
-    z-index: 40;
+    z-index: 30;
     font-size: 22px;
   }
   
@@ -111,7 +111,7 @@ ul {
     width: 0;
     position: fixed;
     z-index: 1;
-    height: 18vh;
+    height: 22vh;
     top: 0;
     right: -25px;
     background-color: #111;
@@ -163,4 +163,8 @@ ul {
     background: none;
     border: none;
     color: white
+  }
+
+  .iconSize{
+    font-size: 16px;
   }

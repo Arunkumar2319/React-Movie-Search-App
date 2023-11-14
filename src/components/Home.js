@@ -12,12 +12,10 @@ const Home = () => {
     const [movies, setMovies] = useState([]);
     const [searchValue, setSearchValue] = useState('avengers');
     const [isLoading, setLoading] = useState(false);
-    // const [stylesForTheme, setStylesForTheme] = useState({
-    //     backgroundColor: "#141414",
-    //     color: "white",
-    // });
 
     const containerElement = useRef(); 
+    const headerElement = useRef(); 
+
 
     const favouritesFromState = useSelector((store) => store.favourites?.favouriteMovies);
     const theme = useSelector((store) => store.theme?.themeStyle);
@@ -30,9 +28,11 @@ const Home = () => {
     useEffect(() => {
         if(theme === "dark"){
             containerElement.current.style.backgroundColor = "#141414 "
+            headerElement.current.style.color = "white"
         }
         else{
             containerElement.current.style.backgroundColor = "white"
+            headerElement.current.style.color = "#141414"
         }
     }, [theme])
 
@@ -73,7 +73,7 @@ const Home = () => {
                     closeProfileSettings={closeProfileSettings} />
             </div>
             <div className='row'>
-                <h3>Trending</h3>
+                <h3 ref={headerElement}>Trending</h3>
             </div>
             <div className="row" onClick={handleProfileSettings} >
                 <MovieList
