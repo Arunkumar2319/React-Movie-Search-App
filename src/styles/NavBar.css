@@ -105,3 +105,62 @@ ul {
     right: 8%;
     z-index: 45;
 }
+
+
+.sidepanel  {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    height: 18vh;
+    top: 0;
+    right: -25px;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 13px;
+  }
+  
+  .sidepanel a {
+    padding: 4px 4px 4px 4px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-align: left;
+  }
+  
+  .sidepanel a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidepanel .closebtn {
+    position: absolute;
+    top: -9px;
+    right: 23px;
+    font-size: 30px;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    position: absolute;
+    right: 0;
+  }
+  
+  .openbtn:hover {
+    background-color:#444;
+  }
+
+  .hamburgerMenu{
+    position: absolute;
+    right: 0;
+    top: 17px;
+    background: none;
+    border: none;
+    color: white
+  }
