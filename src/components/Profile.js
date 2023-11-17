@@ -22,14 +22,9 @@ const Profile = () => {
         navigate('/login');
     }
 
-    // useEffect(() => {
-    //     if(theme == 'light'){
-    //         setStylesForTheme({backgroundColor: "black", color: "white"})
-    //     }
-    //     else{
-    //         setStylesForTheme({backgroundColor: "white", color: "black"})
-    //     }
-    // }, [theme])
+    const onClickPlans = () => {
+        navigate('/membership');
+    }
 
     return (
         <>
@@ -43,6 +38,9 @@ const Profile = () => {
             {credentialDetails != null ? (
                 <ul className="m-2">
                     <li>Profile</li>
+                    {credentialDetails?.role === 'premium_member' ? (
+                        <li onClick={onClickPlans}>Plans</li>
+                    ): null}
                     <li onClick={onClickLogout}>Logout</li>
                 </ul>
             ) : null}

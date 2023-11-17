@@ -45,7 +45,6 @@ ul {
     display: flex;
     /* right: 5px; */
     justify-content: flex-end;
-    right: 4px;
   }
 
   
@@ -63,11 +62,11 @@ ul {
 .favourites{
     position:absolute;
     display: flex;
-    right: 70px;
+    right: 56px;
     justify-content: flex-end;
     cursor: pointer;
-    z-index: 40;
-    font-size: 18px;
+    z-index: 30;
+    font-size: 22px;
   }
   
 @media only screen and (max-width: 600px) {
@@ -90,12 +89,11 @@ ul {
 
 .userIcon{
     width: 23px;
-    color: black;
 }
 
 .favourite-icon{
     position: absolute;
-    width: 21px;
+    width: 25px;
     top: 16px;
     right: 85px;
 }
@@ -103,7 +101,70 @@ ul {
 .theme-icon-style{
     position: absolute;
     top: 19px;
-    width: 18px;
-    right: 51px;
+    width: 21px;
+    right: 8%;
     z-index: 45;
 }
+
+
+.sidepanel  {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    height: 22vh;
+    top: 0;
+    right: -25px;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 13px;
+  }
+  
+  .sidepanel a {
+    padding: 4px 4px 4px 4px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-align: left;
+  }
+  
+  .sidepanel a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidepanel .closebtn {
+    position: absolute;
+    top: -9px;
+    right: 23px;
+    font-size: 30px;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    position: absolute;
+    right: 0;
+  }
+  
+  .openbtn:hover {
+    background-color:#444;
+  }
+
+  .hamburgerMenu{
+    position: absolute;
+    right: 0;
+    top: 17px;
+    background: none;
+    border: none;
+    color: white
+  }
+
+  .iconSize{
+    font-size: 16px;
+  }
