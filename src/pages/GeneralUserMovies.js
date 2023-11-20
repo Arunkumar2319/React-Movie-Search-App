@@ -1,15 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
+import { Suspense, useCallback, useEffect, useState } from 'react';
 
 import '../styles/MovieList.css'
 import NavBar from '../components/Navbar';
 import AppLoader from '../AppLoader';
 import { movieApiUrl, apikey } from '../environment/environment'
+import MovieList from '../components/MovieList';
+import withLoader from '../withLoader';
 
 const GeneralUserMovies = () => {
     let closeProfileSettings = false
     const [movies, setMovies] = useState([]);
     const [searchValue, setSearchValue] = useState('avengers');
     const [isLoading, setLoading] = useState(false);
+
+    const UserwithLoader = withLoader(MovieList,isLoading )
+
 
     const GetMovieRequest = useCallback( async () => {
         setLoading(true);
@@ -34,6 +39,7 @@ const GeneralUserMovies = () => {
 
     return (
         <div className="container-fluid movie-container">
+            {/* <UserwithLoader /> */}
             {movies.length === 0 && isLoading ? (
                 <AppLoader />
             ) : null}
@@ -47,11 +53,9 @@ const GeneralUserMovies = () => {
                 <h3>Trending</h3>
             </div>
             <div className="row" >
-                {movies?.map((movie, index) =>
-                    <div key={index} className='image-container  d-flex movie-frame justify-content-start p-0 m-3'>
-                        <img src={movie.Poster} alt='movie'></img>
-                    </div>
-                )}
+                <Suspense fallback={<UserwithLoader/>}>
+                    <MovieList movies={movies}/>
+                </Suspense>
             </div>
         </div>
     )

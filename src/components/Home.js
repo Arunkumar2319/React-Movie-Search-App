@@ -5,14 +5,16 @@ import '../styles/MovieList.css'
 
 import MovieList from './MovieList';
 import NavBar from './Navbar';
-import AppLoader from '../AppLoader';
 import { movieApiUrl, apikey } from '../environment/environment';
+import withLoader from '../withLoader';
 
 const Home = () => {
     let closeProfileSettings = false
     const [movies, setMovies] = useState([]);
     const [searchValue, setSearchValue] = useState('avengers');
     const [isLoading, setLoading] = useState(false);
+
+    const UserwithLoader = withLoader(MovieList,isLoading )
 
     const containerElement = useRef();
     const headerElement = useRef();
@@ -57,9 +59,7 @@ const Home = () => {
 
     return (
         <div className="container-fluid movie-container" ref={containerElement}>
-            {movies.length === 0 && isLoading ? (
-                <AppLoader />
-            ) : null}
+            <UserwithLoader/>
             <div className='row App' >
                 <NavBar
                     SearchValue={searchValue}
