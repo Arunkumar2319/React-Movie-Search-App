@@ -29,6 +29,7 @@ const NavBar = (props) => {
     const navigateToGeneralHomePage = (event) => {
         event.stopPropagation();
         navigate('/');
+        localStorage.removeItem('userToken');
     }
 
     const [credentialDetails] = useState(useSelector((Store) => Store.credentials.credentialDetails));
