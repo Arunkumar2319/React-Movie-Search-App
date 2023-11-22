@@ -75,6 +75,7 @@ const Login = () => {
             setErrors(errorMsg)
         }
         else {
+            localStorage.setItem('userToken', responseJSON.token);
             setErrors({})
             setValidation(true);
             dispatch(setCredentials(responseJSON));
@@ -86,7 +87,7 @@ const Login = () => {
             onSubmit();
         }
     }, [errors, isValidated]);
-
+    
 
     const onSubmit = () => {
         navigate('/home');
